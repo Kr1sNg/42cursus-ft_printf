@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 /*
 ** :::::::::::::::::::::::::::::::::* HEADERS *:::::::::::::::::::::::::::::: **
 */
 
 # include <unistd.h>
-# include <stdlib.h>
+# include <stdarg.h>
 
 /*
 ** :::::::::::::::::::::::::::* STRUCT DECLARATION *::::::::::::::::::::::::: **
@@ -34,3 +34,4 @@ typedef struct s_list
 ** ::::::::::::::::::::::::::* FUNCTION PROTOTYPES *::::::::::::::::::::::::: **
 */
 
+int	ft_format_check(char c);
