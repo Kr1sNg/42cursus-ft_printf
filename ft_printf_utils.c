@@ -10,31 +10,73 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_format_check(char c)
+int		ft_print_format(char c, va_list ap)
 {
+	int	count;
+
+	count = 0;
 	if (c == 'c')
-		return (1);
+		count += ft_print_char(va_arg(ap, int));
 	else if (c == 's')
-		return (2);
+		count += ft_print_str(va_arg(ap, char *));
 	else if (c == 'p')
-		return (3);
+		count += ft_print_digit((long)va_arg(ap, int), 16);
 	else if (c == 'd' || c == 'i')
-		return (4);
+		count += ft_print_nbr((long)va_arg(ap, int));
 	else if (c == 'u')
-		return (5);
+		count += ft_print_digit((long)va_arg(ap, unsigned int), 10);
 	else if (c == 'x')
-		return (6);
+		count += ft_print_digit((long)va_arg(ap, unsigned int), 16);
 	else if (c == 'X')
-		return (7);
+		count += ft_print_digit((long)va_arg(ap, unsigned int), 16);
 	else if (c == '%')
-		return (8);
+	{
+		count += write(1, '%', 1);
+	}
 	else
-		return (0);
+		count += write(1, &c, 1);
+	return (count);
 }
 
-void	ft_put_arg(int a, char *arg)
+int		ft_print_char(int c)
 {
-	if (a == 1)
+	return (write(1, &c, 1));
+}
+
+int		ft_print_str(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write (1, &str[i++], 1);
+	}
+	return (i);
+}
+
+int		ft_print_nbr(int nbr)
+{
+	long	n;
+	char	c;
+	int		count;
+
+	if (n < 0)
+	{
+		count += write(1, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		count += ft_print_nbr(n / 10);
+		count += ft_print_nbr(n % 10);
+	}
+	else
+	{
+		n = c + '0';
+		count += write(1, &c, 1);
+	}
+	return (count);
 }
