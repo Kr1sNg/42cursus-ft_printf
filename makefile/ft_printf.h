@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tat-nguy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:15:16 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/12 13:15:25 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/14 21:20:06 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@
 # include <stdarg.h>
 
 /*
-** :::::::::::::::::::::::::::* STRUCT DECLARATION *::::::::::::::::::::::::: **
-*/
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
-/*
 ** ::::::::::::::::::::::::::* FUNCTION PROTOTYPES *::::::::::::::::::::::::: **
 */
 
-int	ft_format_check(char c);
+int		ft_printf(const char *mand_arg, ...);
+int		ft_print_format(char c, va_list ap);
+int		ft_print_char(int c);
+int		ft_print_str(char *str);
+int		ft_print_dec(long n);
+int		ft_print_hex(unsigned long long n, char c);
+int		ft_print_ptr(unsigned long long p);
+
+#endif

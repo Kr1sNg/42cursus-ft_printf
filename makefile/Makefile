@@ -1,0 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/07 15:19:42 by tat-nguy          #+#    #+#              #
+#    Updated: 2024/11/14 19:59:29 by tat-nguy         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# Variables
+NAME		= libftprintf.a
+CC 			= cc
+CFLAGS 		= -Wall -Wextra -Werror
+AR			= ar -rc
+RANLIB		= ranlib
+RM			= rm -rf
+
+# Paths and Files
+SRCS 		= ft_printf.c ft_printf_utils.c
+
+OBJS 		= $(SRCS:.c=.o)
+
+INCLUDE		= .
+
+# Rules
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+			$(AR) $(NAME) $(OBJS)
+			$(RANLIB) $(NAME)
+
+.c.o:
+			$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+
+clean:
+			$(RM) $(OBJS) $(BONUS_OBJS)
+
+fclean:		clean
+			$(RM) $(NAME)
+
+re:			fclean all
+
+.PHONY: all clean fclean re bonus

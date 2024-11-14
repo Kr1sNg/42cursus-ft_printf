@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tat-nguy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:39:49 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 09:39:51 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/14 21:39:44 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 
 int	main()
 {
-	int	count;
 	
-	count = ft_printf("Hello %s\n", "John");
-	ft_printf("Number of chars written are %d\n", count);
+	int count = ft_printf(" %p %p ", 0, ULONG_MAX);
+	ft_printf("number of char: %i\n", count);
 
 }
