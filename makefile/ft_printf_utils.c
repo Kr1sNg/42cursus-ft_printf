@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 21:39:20 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/14 22:04:53 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,13 @@ int	ft_print_ptr(unsigned long long p)
 	int		count;
 
 	count = 0;
-	count += ft_print_str("0x");
-	if (p == 0)
-		count += write(1, "0", 1);
+	
+	if (!p)
+		count += ft_print_str("(nil)");
 	else
+	{
+		count += ft_print_str("0x");
 		count += ft_print_hex(p, 'x');
+	}
 	return (count);
 }
