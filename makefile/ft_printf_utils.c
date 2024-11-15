@@ -80,7 +80,6 @@ int	ft_print_ptr(unsigned long long p)
 	int		count;
 
 	count = 0;
-	
 	if (!p)
 		count += ft_print_str("(nil)");
 	else
