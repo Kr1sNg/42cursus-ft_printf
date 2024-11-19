@@ -16,7 +16,7 @@
 
 int main()
 {
-	int result = printf("[%.i], [%*i]\n", -2147483647, 10);
+	int result = printf("[%], [%*i]\n", "-2147483647", 10);
 	printf("characters were written in total (both 2 arguments)%i\n", result);
 
    

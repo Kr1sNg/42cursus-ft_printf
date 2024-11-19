@@ -26,7 +26,7 @@
 
 typedef	struct s_flags
 {
-	//[-+' '#0' '+]
+	//[-+' '#0.]
 	int	minus; //for align_left
 	int plus; // +0 -42
 	int	space; // ' '42
@@ -41,12 +41,26 @@ typedef	struct s_flags
 ** ::::::::::::::::::::::::::* FUNCTION PROTOTYPES *::::::::::::::::::::::::: **
 */
 
+//	ft_printf.c
+
 int		ft_printf(const char *mand_arg, ...);
-int		ft_print_format(char c, va_list ap);
+int		ft_print_format(t_flags *flags, const char *mand_arg, int *i, va_list ap);
+void	ft_update_flags(t_flags *flags, const char *mand_arg, int *i);
+
+//	ft_printf_utils.c
+
 int		ft_print_char(int c);
 int		ft_print_str(char *str);
 int		ft_print_dec(long n);
 int		ft_print_hex(unsigned long long n, char c);
 int		ft_print_ptr(unsigned long long p);
+
+//	ft_printf_tools.c
+
+void	ft_bzero(void *s, size_t n);
+void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_isdigit(int c);
+int 	ft_atoi(const char *nptr);
+
 
 #endif

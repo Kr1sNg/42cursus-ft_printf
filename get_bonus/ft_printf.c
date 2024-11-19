@@ -16,17 +16,24 @@ int	ft_printf(const char *mand_arg, ...)
 {
 	int		i;
 	int		count;
+	t_flags	flags;
 	va_list	ap;
 
+	if (mand_arg == NULL || (mand_arg[0] == '%' && mand_arg[1] == '\0'))
+		return (-42);
 	va_start(ap, mand_arg);
 	i = 0;
 	count = 0;
 	while (mand_arg[i] != '\0')
 	{
+		ft_bzero(&flags, sizeof(t_flags));
 		if (mand_arg[i] == '%')
 		{
 			i++;
-			count += ft_print_format(mand_arg[i], ap);
+			while ((ft_memchr("-+ #0.", mand_arg[i], 6) != NULL) ||
+						ft_isdigit(mand_arg[i]) != 0)
+				ft_update_flags(&flags, mand_arg, &i);
+			count += ft_print_format(&flags, mand_arg, &i, ap);
 		}
 		else
 			count += write(1, &mand_arg[i], 1);
@@ -36,24 +43,56 @@ int	ft_printf(const char *mand_arg, ...)
 	return (count);
 }
 
-int	ft_print_format(char c, va_list ap)
+int	ft_print_format(t_flags *flags, const char *mand_arg, int *i, va_list ap)
 {
 	int	count;
 
 	count = 0;
-	if (c == 'c')
-		count += ft_print_char(va_arg(ap, int));
-	else if (c == 's')
-		count += ft_print_str(va_arg(ap, char *));
-	else if (c == 'p')
-		count += ft_print_ptr((unsigned long long)va_arg(ap, unsigned long));
-	else if (c == 'd' || c == 'i')
-		count += ft_print_dec((long)va_arg(ap, int));
-	else if (c == 'u')
-		count += ft_print_dec((long)va_arg(ap, unsigned int));
-	else if (c == 'x' || c == 'X')
-		count += ft_print_hex((unsigned long long)va_arg(ap, unsigned int), c);
-	else if (c == '%')
+	if (mand_arg[*i] == 'c')
+		count += ft_print_char(flags, va_arg(ap, int)); //update
+	else if (mand_arg[*i] == 's')
+		count += ft_print_str(flags, va_arg(ap, char *)); //update
+	else if (mand_arg[*i] == 'p')
+		count += ft_print_ptr(flags, (unsigned long long)va_arg(ap, unsigned long)); //update
+	else if (mand_arg[*i] == 'd' || c == 'i')
+		count += ft_print_dec(flags, (long)va_arg(ap, int)); //update
+	else if (mand_arg[*i] == 'u')
+		count += ft_print_dec(flags, (long)va_arg(ap, unsigned int)); //update
+	else if (mand_arg[*i] == 'x' || c == 'X')
+		count += ft_print_hex(flags, (unsigned long long)va_arg(ap, unsigned int), mand_arg[*i]); //update
+	else if (mand_arg[*i] == '%')
 		count += ft_print_char('%');
+	// DONT KNOW if it's needed to run (*i)++ here!?
+
 	return (count);
+}
+
+void	ft_update_flags(t_flags *flags, const char *mand_arg, int *i)
+{
+	while (ft_memchr("-+ #", mand_arg[*i]) != NULL)
+	{
+		if (mand_arg[*i] == '-')
+			flags->minus = 1;
+		else if (mand_arg[*i] == '+')
+			flags->plus = 1;
+		else if (mand_arg[*i] == ' ')
+			flags->space = 1;
+		else if (mand_arg[*i] == '#')
+			flags->hash = 1;
+		(*i)++;	
+	}
+	if (mand_arg[*i] == '0')
+		flags->zero = 1;
+	if (ft_isdigit(mand_arg[*i]) != 0 || mand_arg[*i] == '.')
+	{
+		if (mand_arg[*i] == '.')
+		{
+			(*i)++;
+			flags->precision = ft_atoi(&mand_arg[*i]) + 1;
+		}
+		else
+			flags->width = ft_atoi(&mand_arg[*i]);
+		while (ft_isdigit(mand_arg[*i]) != 1)
+			(*i)++;
+	}
 }
