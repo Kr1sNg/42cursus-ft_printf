@@ -32,7 +32,7 @@ typedef	struct s_flags
 	int	space; // ' '42
 	int	hash; // '0x' or '0X'
 	int	zero; // 000042
-	int	width;
+	int	width; // 
 	int	point; // [forty_tw" "]
 	int	precision;
 }	t_flags;
@@ -50,7 +50,7 @@ void	ft_update_flags(t_flags *flags, const char *mand_arg, int *i);
 //	ft_printf_utils.c
 
 int		ft_print_char(int c);
-int		ft_print_str(char *str);
+int		ft_print_str(t_flags *flags, char *str);
 int		ft_print_dec(long n);
 int		ft_print_hex(unsigned long long n, char c);
 int		ft_print_ptr(unsigned long long p);
@@ -61,6 +61,14 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_isdigit(int c);
 int 	ft_atoi(const char *nptr);
+int		ft_strlen(char *s);
+
+//	ft_printf_str.c
+
+int		ft_prints(char *str);
+int		ft_prints_precision(int	precision, char *str);
+int		ft_prints_width(int width, char *str, int minus);
+int		ft_prints_duo(int width, int precision, char *str, int minus)
 
 
 #endif

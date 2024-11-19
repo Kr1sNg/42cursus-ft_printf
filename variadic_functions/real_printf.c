@@ -12,12 +12,11 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 
 int main()
 {
-	int result = printf("[%], [%*i]\n", "-2147483647", 10);
-	printf("characters were written in total (both 2 arguments)%i\n", result);
-
-   
+	int result = printf("[%.6s]\n", NULL);
+	printf("characters were written in total is %i\n", result);
 }

@@ -49,7 +49,7 @@ int	ft_print_format(t_flags *flags, const char *mand_arg, int *i, va_list ap)
 
 	count = 0;
 	if (mand_arg[*i] == 'c')
-		count += ft_print_char(flags, va_arg(ap, int)); //update
+		count += ft_print_char(flags, va_arg(ap, int));
 	else if (mand_arg[*i] == 's')
 		count += ft_print_str(flags, va_arg(ap, char *)); //update
 	else if (mand_arg[*i] == 'p')

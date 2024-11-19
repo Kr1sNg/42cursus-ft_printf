@@ -60,3 +60,12 @@ int ft_atoi(const char *nptr)
     }
     return (nb);
 }
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
