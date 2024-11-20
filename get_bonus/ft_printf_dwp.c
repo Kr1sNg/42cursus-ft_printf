@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_dwp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 22:04:53 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:10:12 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	ft_printd_wplus(int width, long n, char sign, char c)
 	while (count < width - len - 1)
 		count += write(1, " ", 1);
 	write(1, &sign, 1);
-	return (count + ft_prind(n) + 1);
+	return (count + ft_printd(n) + 1);
 }
 
-int ft_printd_wp(int width, int pre, long n, char sign)
+int	ft_printd_wp(int width, int pre, long n, char sign)
 {
 	int	len;
 	int	count;

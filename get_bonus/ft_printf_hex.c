@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/20 11:46:55 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:10:58 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 	if (flags->hash == 1)
 		return (ft_printh_hash(flags, n, x, c));
 	if (flags->width > 0)
-		return (ft_printh_width(flags, n, x, c)); //TODO
+		return (ft_printh_width(flags, n, x, c));
 	if (flags->precision > 0)
 		return (ft_printh_precision((flags->precision - 1), n, x));
-	return (ft_printh(n, x)); //deleted len = ft_hexlen
+	return (ft_printh(n, x));
 }
 
 int	ft_printh_precision(int pre, unsigned long long n, char x)
@@ -69,7 +69,7 @@ int	ft_printh_minus(t_flags *flags, unsigned long long n, char x)
 	return (count);
 }
 
-int	ft_printf_hash(t_flags *flags, unsigned long long n, char x, char c)
+int	ft_printh_hash(t_flags *flags, unsigned long long n, char x, char c)
 {
 	int		count;
 	int		len;
@@ -87,7 +87,8 @@ int	ft_printf_hash(t_flags *flags, unsigned long long n, char x, char c)
 		count += write(1, "0", 1);
 		count += write(1, &x, 1);
 	}
-	count += ft_printh_precision((flags->precision - 1), n, x)
+	count += ft_printh_precision((flags->precision - 1), n, x);
+	return (count);
 }
 
 int	ft_printh_width(t_flags *flags, unsigned long long n, char x, char c)

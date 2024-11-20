@@ -1,52 +1,72 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 22:04:53 by tat-nguy         ###   ########.fr       */
+/*   Created: 2024/11/18 20:21:57 by tat-nguy          #+#    #+#             */
+/*   Updated: 2024/11/21 00:31:03 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// [%-10c] => [c         ]
-//  [%10c] => [         c]
-int	ft_print_char(t_flags *flags, int c)
+void	ft_bzero(void *s, size_t n)
 {
-	int	count;
+	size_t	i;
 
-	count = 0;
-	if (flags->minus == 1)
+	i = 0;
+	while (i < n)
 	{
-		count += write(1, &c, 1);
-		(flags->width)--;
-		while (flags->width > 0)
-		{
-			count += write(1, " ", 1);
-			(flags->width)--;
-		}
-		return (count);
+		((unsigned char *)s)[i] = 0;
+		i++;
 	}
-	while (flags->width > 1)
-	{
-		count += write(1, " ", 1);
-		(flags->width)--;
-	}
-	return (count + write(1, &c, 1));
 }
 
-int	ft_prints(char *str)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
+	size_t	i;
 
-	if (str == NULL)
-		return (ft_prints("(null)"));
 	i = 0;
-	while (str[i] != '\0')
-		write (1, &str[i++], 1);
+	while (i < n)
+	{
+		if (((const unsigned char *)s)[i] == (unsigned char)c)
+			return ((unsigned char *)s + i);
+		i++;
+	}
+	return (NULL);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (2048);
+	else
+		return (0);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = nb * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (nb);
+}
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
 	return (i);
 }
-

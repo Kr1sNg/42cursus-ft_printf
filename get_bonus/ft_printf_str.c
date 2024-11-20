@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 22:04:53 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:15:33 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 int	ft_print_str(t_flags *flags, char *str)
 {
 	if (flags->width > 0 && flags->precision > 0)
-		return (ft_prints_duo(flags->width, (flags->precision -1)
-									, str, flags->minus));
+		return (ft_prints_duo(flags->width, (flags->precision -1), str,
+				flags->minus));
 	if (flags->width > 0)
 		return (ft_prints_width(flags->width, str, flags->minus));
 	if (flags->precision > 0)
@@ -31,7 +31,7 @@ int	ft_print_str(t_flags *flags, char *str)
 	return (ft_prints(str));
 }
 
-int	ft_prints_precision(int	precision, char *str)
+int	ft_prints_precision(int precision, char *str)
 {
 	int	i;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_dec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 22:04:53 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:08:48 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	ft_print_dec(t_flags *flags, long n)
 	return (ft_printd(ft_abs(n)));
 }
 
-int ft_printd(long n)
+int	ft_printd(long n)
 {
-	int 	count;
+	int		count;
 	char	c;
 
 	count = 0;
@@ -54,7 +54,7 @@ int ft_printd(long n)
 	if (n < 10)
 	{
 		c = n + '0';
-		count += write(1, &c, 1);
+		return (count += write(1, &c, 1));
 	}
 	count += ft_printd(n / 10);
 	count += ft_printd(n % 10);
@@ -96,7 +96,7 @@ int	ft_printd_precision(int pre, long n, char sign)
 	if (sign == '+' || sign == ' ')
 		count += write(1, &sign, 1);
 	while (count < pre - len)
-		count += write(1, '0', 1);
+		count += write(1, "0", 1);
 	return (count + ft_printd(ft_abs(n)));
 }
 

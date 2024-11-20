@@ -1,47 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_cs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/21 00:18:20 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:17:57 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// [%-10c] => [c         ]
+//  [%10c] => [         c]
+
 #include "ft_printf.h"
 
-int	ft_hexlen(unsigned long long n)
+int	ft_print_char(t_flags *flags, int c)
 {
-	int	i;
+	int	count;
 
-	i = 1;
-	while (n >= 16)
+	count = 0;
+	if (flags->minus == 1)
 	{
-		n = n / 16;
-		i++;
+		count += write(1, &c, 1);
+		(flags->width)--;
+		while (flags->width > 0)
+		{
+			count += write(1, " ", 1);
+			(flags->width)--;
+		}
+		return (count);
 	}
-	return (i);
+	while (flags->width > 1)
+	{
+		count += write(1, " ", 1);
+		(flags->width)--;
+	}
+	return (count + write(1, &c, 1));
 }
 
-int	ft_declen(unsigned long long n)
+int	ft_prints(char *str)
 {
-	int	i;
+	int		i;
 
-	i = 1;
-	while (n >= 10)
-	{
-		n = n / 10;
-		i++;
-	}
+	if (str == NULL)
+		return (ft_prints("(null)"));
+	i = 0;
+	while (str[i] != '\0')
+		write (1, &str[i++], 1);
 	return (i);
-}
-
-int	ft_abs(long n)
-{
-	if (n >= 0)
-		return (n);
-	else
-		return (-n);
 }

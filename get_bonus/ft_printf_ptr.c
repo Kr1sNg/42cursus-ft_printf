@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/20 10:11:46 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:12:54 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	ft_print_ptr(t_flags *flags, unsigned long long p)
 	return (count);
 }
 
-int ft_printp(int width, int minus, unsigned long long p)
+int	ft_printp(int width, int minus, unsigned long long p)
 {
-	int count;
+	int	count;
 
 	count = ft_hexlen(p) + 2;
 	if (width <= count)
@@ -74,7 +74,7 @@ int ft_printp(int width, int minus, unsigned long long p)
 int	ft_printh(unsigned long long n, char x)
 {
 	int		count;
-	char 	*str;
+	char	*str;
 
 	count = 0;
 	if (n < 16)

@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:33:47 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/20 11:45:36 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:23:02 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_print_format(t_flags *flags, const char *manda, int *i, va_list ap)
 				(unsigned long long)va_arg(ap, unsigned int), manda[*i]);
 	else if (manda[*i] == '%')
 		count += write(1, "%", 1);
-	// DONT KNOW if it's needed to run (*i)++ here!?
+	(*i)++;
 	return (count);
 }
 
@@ -85,10 +85,18 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	if (ft_isdigit(manda[*i]) != 0 || manda[*i] == '.')
 	{
 		if (manda[*i] == '.')
-			flags->precision = ft_atoi(&manda[(*i)++]) + 1;
+			flags->precision = ft_atoi(&manda[++(*i)]) + 1;
 		else
 			flags->width = ft_atoi(&manda[*i]);
 		while (ft_isdigit(manda[*i]) != 0)
 			(*i)++;
 	}
 }
+
+/*
+int main (void)
+{
+	int a = ft_printf("[% .9i]\n", 9);
+	ft_printf("characters were written in total is %i\n", a);
+}
+*/
