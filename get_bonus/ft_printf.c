@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:33:47 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/14 21:20:45 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:45:36 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	ft_print_format(t_flags *flags, const char *mand_arg, int *i, va_list ap)
 		count += ft_print_str(flags, va_arg(ap, char *)); //update
 	else if (mand_arg[*i] == 'p')
 		count += ft_print_ptr(flags, (unsigned long long)va_arg(ap, unsigned long)); //update
-	else if (mand_arg[*i] == 'd' || c == 'i')
+	else if (mand_arg[*i] == 'd' || mand_arg[*i] == 'i')
 		count += ft_print_dec(flags, (long)va_arg(ap, int)); //update
 	else if (mand_arg[*i] == 'u')
 		count += ft_print_dec(flags, (long)va_arg(ap, unsigned int)); //update
-	else if (mand_arg[*i] == 'x' || c == 'X')
+	else if (mand_arg[*i] == 'x' || mand_arg[*i] == 'X')
 		count += ft_print_hex(flags, (unsigned long long)va_arg(ap, unsigned int), mand_arg[*i]); //update
 	else if (mand_arg[*i] == '%')
-		count += ft_print_char('%');
+		count += write(1, "%", 1);
 	// DONT KNOW if it's needed to run (*i)++ here!?
 
 	return (count);
@@ -69,15 +69,15 @@ int	ft_print_format(t_flags *flags, const char *mand_arg, int *i, va_list ap)
 
 void	ft_update_flags(t_flags *flags, const char *mand_arg, int *i)
 {
-	while (ft_memchr("-+ #", mand_arg[*i]) != NULL)
+	while (ft_memchr("-+ #", mand_arg[*i], 4) != NULL)
 	{
 		if (mand_arg[*i] == '-')
 			flags->minus = 1;
-		else if (mand_arg[*i] == '+')
+		if (mand_arg[*i] == '+')
 			flags->plus = 1;
-		else if (mand_arg[*i] == ' ')
+		if (mand_arg[*i] == ' ')
 			flags->space = 1;
-		else if (mand_arg[*i] == '#')
+		if (mand_arg[*i] == '#')
 			flags->hash = 1;
 		(*i)++;	
 	}

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   real_printf.c                                      :+:      :+:    :+:   */
+/*   ft_printf_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 17:01:07 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/20 11:09:28 by tat-nguy         ###   ########.fr       */
+/*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
+/*   Updated: 2024/11/20 10:11:46 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <limits.h>
+// [%20p]  =>  [0x16d5d730c   ]
+// [%-20p] =>  [   0x16d5d730c]
+// [%1p]   =>  [0x16d5d730c]
 
+#include "ft_printf.h"
 
-int main()
+int	ft_print_ptr(unsigned long long p)
 {
-	int a;
-	int result = printf("[%-.20x]\n", 4278999);
-	printf("characters were written in total is %i\n", result);
-	write(1, "%\n", 2);
+	int		count;
+
+	count = 0;
+	if (!p)
+		count += ft_print_str("(nil)");
+	else
+	{
+		count += ft_print_str("0x");
+		count += ft_print_hex(p, 'x');
+	}
+	return (count);
 }
