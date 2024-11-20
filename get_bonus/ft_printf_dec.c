@@ -12,17 +12,26 @@
 
 #include "ft_printf.h"
 
-int	ft_hexlen(unsigned long long n)
+int	ft_print_dec(long n)
 {
-	int	i;
+	char	c;
+	int		count;
 
-	i = 1;
-	while (n >= 16)
+	count = 0;
+	if (n < 0)
 	{
-		n = n / 16;
-		i++;
+		count += write(1, "-", 1);
+		n = -n;
 	}
-	return (i);
+	if (n >= 10)
+	{
+		count += ft_print_dec(n / 10);
+		count += ft_print_dec(n % 10);
+	}
+	else
+	{
+		c = n + '0';
+		count += ft_print_char(c);
+	}
+	return (count);
 }
-
-int	ft_declen()

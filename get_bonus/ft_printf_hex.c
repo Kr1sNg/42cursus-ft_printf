@@ -25,23 +25,41 @@ int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 	c = ' ';
 	if (flags->zero == 1)
 		c = '0';
-	if (flags->width != 0 && flags->precision != 0)
+	if (flags->width > 0 && flags->precision > 0)
 		c = ' ';
 	if (flags->minus == 1)
-
-		
-	if (n >= 16)
-	{
-		count += ft_print_hex(n / 16, c);
-		count += ft_print_hex(n % 16, c);
-	}
-	else
-	{
-		if (c == 'x')
-			count += ft_print_char("0123456789abcdef"[n]);
-		if (c == 'X')
-			count += ft_print_char("0123456789ABCDEF"[n]);
-	}
-	return (count);
+		return (ft_printh_minus(flags, n, x)); //TODO
+	if (flags->hash == 1)
+		return (ft_printh_hash(flags, n, x, c)); //TODO
+	if (flags->width > 0)
+		return (ft_printh_width(flags, n. x, c)); //TODO
+	if (flags->precision > 0)
+		return (ft_printh_precision((flags->precision - 1), n, x)); //TODO
+	len = ft_hexlen(n);
+	ft_printh(n, x); //TODO
+	return (len);
 }
 
+int	ft_printh(unsigned long long n, char x)
+{
+	int		count;
+	char 	*str;
+
+	count = 0;
+	if (n < 16)
+	{
+		if (x == 'x')
+		{
+			str = "0123456789abcdef";
+			return (count += write(1, &str[n], 1));
+		}
+		else if (x == 'X')
+		{
+			str = "0123456789ABCDEF";
+			return (count += write(1, &str[n], 1));
+		}
+	}
+	count += ft_printh(n / 16, x);
+	count += ft_printh(n % 16, x);
+	return (count);
+}

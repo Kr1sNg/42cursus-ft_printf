@@ -49,11 +49,8 @@ void	ft_update_flags(t_flags *flags, const char *mand_arg, int *i);
 
 //	ft_printf_utils.c
 
-int		ft_print_char(t_flags *flags, int c);
-int		ft_print_str(t_flags *flags, char *str);
-int		ft_print_dec(long n);
-int		ft_print_hex(t_flags *flags, unsigned long long n, char x);
-int		ft_print_ptr(unsigned long long p);
+
+int		ft_hexlen(unsigned long long n);
 
 //	ft_printf_tools.c
 
@@ -63,12 +60,27 @@ int		ft_isdigit(int c);
 int 	ft_atoi(const char *nptr);
 int		ft_strlen(char *s);
 
+
+//	ft_printf_char.c
+
+int		ft_print_char(t_flags *flags, int c);
+
 //	ft_printf_str.c
 
+int		ft_print_str(t_flags *flags, char *str);
 int		ft_prints(char *str);
 int		ft_prints_precision(int	precision, char *str);
 int		ft_prints_width(int width, char *str, int minus);
 int		ft_prints_duo(int width, int precision, char *str, int minus);
 
+//	ft_printf_hex.c
+
+int		ft_print_hex(t_flags *flags, unsigned long long n, char x);
+int		ft_printh(unsigned long long n, char x);
+
+//	ft_printf_ptr.c
+
+
+//	ft_printf_dec.c
 
 #endif
