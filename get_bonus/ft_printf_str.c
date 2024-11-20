@@ -31,18 +31,6 @@ int	ft_print_str(t_flags *flags, char *str)
 	return (ft_prints(str));
 }
 
-int	ft_prints(char *str)
-{
-	int		i;
-
-	if (str == NULL)
-		return (ft_prints("(null)"));
-	i = 0;
-	while (str[i] != '\0')
-		write (1, &str[i++], 1);
-	return (i);
-}
-
 int	ft_prints_precision(int	precision, char *str)
 {
 	int	i;
@@ -66,7 +54,7 @@ int	ft_prints_width(int width, char *str, int minus)
 
 	if (str == NULL)
 		str = "(null)";
-	strlen = ft_strlen(str); //TODO
+	strlen = ft_strlen(str);
 	i = 0;
 	if (strlen >= width)
 		return (ft_prints(str));

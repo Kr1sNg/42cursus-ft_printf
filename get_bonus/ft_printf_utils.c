@@ -25,4 +25,23 @@ int	ft_hexlen(unsigned long long n)
 	return (i);
 }
 
-int	ft_declen()
+int	ft_declen(unsigned long long n)
+{
+	int	i;
+
+	i = 1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_abs(long n)
+{
+	if (n >= 0)
+		return (n);
+	else
+		return (-n);
+}

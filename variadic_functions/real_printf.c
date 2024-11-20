@@ -14,11 +14,10 @@
 #include <unistd.h>
 #include <limits.h>
 
-
 int main()
 {
 	int a;
-	int result = printf("[%-.20x]\n", 4278999);
+	int result = printf("[%12.17u]\n", 4278999);
 	printf("characters were written in total is %i\n", result);
 	write(1, "%\n", 2);
 }

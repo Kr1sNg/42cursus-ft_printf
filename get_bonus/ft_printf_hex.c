@@ -19,7 +19,6 @@
 
 int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 {
-	int		len;
 	char	c;
 
 	c = ' ';
@@ -28,38 +27,82 @@ int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 	if (flags->width > 0 && flags->precision > 0)
 		c = ' ';
 	if (flags->minus == 1)
-		return (ft_printh_minus(flags, n, x)); //TODO
+		return (ft_printh_minus(flags, n, x));
 	if (flags->hash == 1)
-		return (ft_printh_hash(flags, n, x, c)); //TODO
+		return (ft_printh_hash(flags, n, x, c));
 	if (flags->width > 0)
-		return (ft_printh_width(flags, n. x, c)); //TODO
+		return (ft_printh_width(flags, n, x, c)); //TODO
 	if (flags->precision > 0)
-		return (ft_printh_precision((flags->precision - 1), n, x)); //TODO
-	len = ft_hexlen(n);
-	ft_printh(n, x); //TODO
-	return (len);
+		return (ft_printh_precision((flags->precision - 1), n, x));
+	return (ft_printh(n, x)); //deleted len = ft_hexlen
 }
 
-int	ft_printh(unsigned long long n, char x)
+int	ft_printh_precision(int pre, unsigned long long n, char x)
+{
+	int	count;
+
+	if (n == 0 && pre == 0)
+		return (0);
+	count = ft_hexlen(n);
+	while (count < pre)
+		count += write(1, "0", 1);
+	ft_printh(n, x);
+	return (count);
+}
+
+int	ft_printh_minus(t_flags *flags, unsigned long long n, char x)
 {
 	int		count;
-	char 	*str;
 
 	count = 0;
-	if (n < 16)
+	if (flags->hash == 1)
 	{
-		if (x == 'x')
+		if (n != 0)
 		{
-			str = "0123456789abcdef";
-			return (count += write(1, &str[n], 1));
-		}
-		else if (x == 'X')
-		{
-			str = "0123456789ABCDEF";
-			return (count += write(1, &str[n], 1));
+			count += write(1, "0", 1);
+			count += write(1, &x, 1);
 		}
 	}
-	count += ft_printh(n / 16, x);
-	count += ft_printh(n % 16, x);
+	count += ft_printh_precision((flags->precision - 1), n, x);
+	while (count < flags->width)
+		count += write(1, " ", 1);
+	return (count);
+}
+
+int	ft_printf_hash(t_flags *flags, unsigned long long n, char x, char c)
+{
+	int		count;
+	int		len;
+
+	count = 0;
+	len = ft_hexlen(n);
+	if ((flags->precision - 1) > len)
+		len = flags->precision - 1;
+	if (n == 0 && flags->precision == 1)
+		len = 0;
+	while (count < flags->width - 2 - len)
+		count += write(1, &c, 1);
+	if (n != 0)
+	{
+		count += write(1, "0", 1);
+		count += write(1, &x, 1);
+	}
+	count += ft_printh_precision((flags->precision - 1), n, x)
+}
+
+int	ft_printh_width(t_flags *flags, unsigned long long n, char x, char c)
+{
+	int	count;
+	int	len;
+
+	count = 0;
+	len = ft_hexlen(n);
+	if ((flags->precision - 1) > len)
+		len = flags->precision - 1;
+	if (n == 0 && flags->width == 1)
+		len = 0;
+	while (count < (flags->width - len))
+		count += write(1, &c, 1);
+	count += ft_printh_precision((flags->precision - 1), n, x);
 	return (count);
 }
