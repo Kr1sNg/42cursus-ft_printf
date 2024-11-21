@@ -40,7 +40,7 @@ int	ft_prints_precision(int precision, char *str)
 	{
 		if (precision < 6)
 			precision = 0;
-		ft_prints_precision(precision, "null");
+		ft_prints_precision(precision, "(null)");
 	}
 	while (str[i] != '\0' && i < precision)
 		i += write (1, &str[i], 1);

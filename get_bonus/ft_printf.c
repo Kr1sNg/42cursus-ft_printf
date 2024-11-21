@@ -93,10 +93,14 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	}
 }
 
-/*
+
+#include <stdio.h>
+#include <limits.h>
+
 int main (void)
 {
-	int a = ft_printf("[% .9i]\n", 9);
+	int a = ft_printf("ft_printf: [%-163.23u%-68.0X]\n", 3421138903u, 514939578u);
+	int b = printf("   printf: [%-163.23u%-68.0X]\n", 3421138903u, 514939578u);
 	ft_printf("characters were written in total is %i\n", a);
+	printf("characters were written in total is %i\n", b);
 }
-*/

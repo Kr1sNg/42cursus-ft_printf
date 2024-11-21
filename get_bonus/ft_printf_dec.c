@@ -36,8 +36,8 @@ int	ft_print_dec(t_flags *flags, long n)
 	if (n < 0)
 		return (ft_printd(n));
 	if (sign == '+' || sign == ' ')
-		return (write(1, &sign, 1) + ft_printd(ft_abs(n)));
-	return (ft_printd(ft_abs(n)));
+		return (write(1, &sign, 1) + ft_printd(n));
+	return (ft_printd(n));
 }
 
 int	ft_printd(long n)
@@ -97,7 +97,7 @@ int	ft_printd_precision(int pre, long n, char sign)
 		count += write(1, &sign, 1);
 	while (count < pre - len)
 		count += write(1, "0", 1);
-	return (count + ft_printd(ft_abs(n)));
+	return (count + ft_printd(n));
 }
 
 int	ft_printd_zero(long n, int pre)
