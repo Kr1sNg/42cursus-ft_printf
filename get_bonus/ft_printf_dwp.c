@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:37:03 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/21 00:10:12 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:09:28 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	ft_printd_wplus(int width, long n, char sign, char c)
 	if (c == '0')
 	{
 		write(1, &sign, 1);
-		while (count < width - len - 1)
+		while (count < width - len) //width - len - 1
 			count += write(1, "0", 1);
 		return (count + ft_printd(n) + 1);
 	}
-	while (count < width - len - 1)
+	while (count < width - len) //width - len - 1
 		count += write(1, " ", 1);
 	write(1, &sign, 1);
 	return (count + ft_printd(n) + 1);

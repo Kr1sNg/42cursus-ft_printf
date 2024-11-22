@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:33:47 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/21 00:23:02 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:17:00 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	}
 }
 
-
+/*
 #include <stdio.h>
 #include <limits.h>
 
@@ -104,3 +104,4 @@ int main (void)
 	ft_printf("characters were written in total is %i\n", a);
 	printf("characters were written in total is %i\n", b);
 }
+*/
