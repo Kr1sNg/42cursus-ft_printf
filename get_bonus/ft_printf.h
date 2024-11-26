@@ -102,4 +102,7 @@ int		ft_printd_wplus(int width, long n, char sign, char c);
 int		ft_printd_wp(int width, int pre, long n, char sign);
 int		ft_printd_wpsign(int width, int pre, long n, char sign);
 
+
+int print_unsigned_dec(long number);
+
 #endif

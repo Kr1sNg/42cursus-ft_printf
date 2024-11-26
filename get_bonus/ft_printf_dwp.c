@@ -31,7 +31,7 @@ int	ft_printd_width(int width, long n, char sign, char c)
 		return (ft_printd_wplus(width, n, sign, c));
 	while (count < width - len)
 		count += write(1, &c, 1);
-	return (count + ft_printd(n));
+	return (count + print_unsigned_dec(n));
 }
 
 int	ft_printd_wplus(int width, long n, char sign, char c)
@@ -61,7 +61,7 @@ int	ft_printd_wp(int width, int pre, long n, char sign)
 
 	count = 0;
 	len = ft_declen(ft_abs(n));
-	if (count < 0)
+	if (n < 0)
 	{
 		if (pre > len)
 			len = pre;

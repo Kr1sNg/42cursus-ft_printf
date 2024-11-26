@@ -56,7 +56,7 @@ int	ft_print_format(t_flags *flags, const char *manda, int *i, va_list ap)
 	else if (manda[*i] == 'd' || manda[*i] == 'i')
 		count += ft_print_dec(flags, (long)va_arg(ap, int));
 	else if (manda[*i] == 'u')
-		count += ft_print_dec(flags, (long)va_arg(ap, unsigned int));
+		count += ft_print_dec(flags, va_arg(ap, unsigned int));
 	else if (manda[*i] == 'x' || manda[*i] == 'X')
 		count += ft_print_hex(flags,
 				(unsigned long long)va_arg(ap, unsigned int), manda[*i]);
@@ -71,7 +71,10 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	while (ft_memchr("-+ #", manda[*i], 4) != NULL)
 	{
 		if (manda[*i] == '-')
+		{
 			flags->minus = 1;
+			flags->zero = 0;
+		}
 		if (manda[*i] == '+')
 			flags->plus = 1;
 		if (manda[*i] == ' ')
@@ -81,7 +84,10 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 		(*i)++;
 	}
 	if (manda[*i] == '0')
+	{
 		flags->zero = 1;
+		flags->minus = 0;
+	}
 	if (ft_isdigit(manda[*i]) != 0 || manda[*i] == '.')
 	{
 		if (manda[*i] == '.')
@@ -93,15 +99,14 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	}
 }
 
-/*
+
 #include <stdio.h>
 #include <limits.h>
 
 int main (void)
 {
-	int a = ft_printf("ft_printf: [%-163.23u%-68.0X]\n", 3421138903u, 514939578u);
-	int b = printf("   printf: [%-163.23u%-68.0X]\n", 3421138903u, 514939578u);
+	int a = ft_printf("ft_printf: [%-163.23u]\n", 3421138903u);
+	int b = printf("   printf: [%-163.23u]\n", 3421138903u);
 	ft_printf("characters were written in total is %i\n", a);
 	printf("characters were written in total is %i\n", b);
 }
-*/
