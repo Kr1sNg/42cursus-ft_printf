@@ -22,10 +22,8 @@ int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 	char	c;
 
 	c = ' ';
-	if (flags->zero == 1 && flags->precision <= 0 && flags->minus == 0) //flags->precision <= 0 && flags->minus == 0)
+	if (flags->zero == 1 && flags->precision <= 0 && flags->minus == 0)
 		c = '0';
-//	if (flags->width > 0 && flags->precision > 0)
-//		c = ' ';
 	if (flags->minus == 1)
 		return (ft_printh_minus(flags, n, x));
 	if (flags->hash == 1)
@@ -34,19 +32,19 @@ int	ft_print_hex(t_flags *flags, unsigned long long n, char x)
 		return (ft_printh_width(flags, n, x, c));
 	if (flags->precision > 0)
 		return (ft_printh_precision((flags->precision - 1), n, x));
-	if (n == 0) //new
-		return (write(1, "0", 1)); //new 
+	if (n == 0)
+		return (write(1, "0", 1));
 	return (ft_printh(n, x));
 }
 
 int	ft_printh_precision(int pre, unsigned long long n, char x)
 {
 	int	count;
-	int	len; //new
+	int	len;
 
 	if (n == 0 && pre == 0)
 		return (0);
-	len = ft_hexlen(n); //count = ft_hexlen(n);
+	len = ft_hexlen(n);
 	count = 0;
 	while (len < pre)
 	{
@@ -102,7 +100,7 @@ int	ft_printh_width(t_flags *flags, unsigned long long n, char x, char c)
 {
 	int	count;
 	int	len;
-	int	padding; //new
+	int	padding;
 
 	len = ft_hexlen(n);
 	if (n == 0 && (flags->precision - 1) == 0)

@@ -44,11 +44,11 @@ int	ft_printd_wplus(int width, long n, char sign, char c)
 	if (c == '0')
 	{
 		write(1, &sign, 1);
-		while (count < width - len) //width - len - 1
+		while (count < width - len)
 			count += write(1, "0", 1);
 		return (count + ft_printd(n) + 1);
 	}
-	while (count < width - len) //width - len - 1
+	while (count < width - len)
 		count += write(1, " ", 1);
 	write(1, &sign, 1);
 	return (count + ft_printd(n) + 1);

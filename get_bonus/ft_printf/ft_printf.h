@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
+# include <limits.h>
 
 /*
 ** :::::::::::::::::::::::::::* STRUCT DECLARATION *::::::::::::::::::::::::: **
@@ -103,6 +104,6 @@ int		ft_printd_wp(int width, int pre, long n, char sign);
 int		ft_printd_wpsign(int width, int pre, long n, char sign);
 
 
-int print_unsigned_dec(long number);
+int print_unsigned_dec(long u);
 
 #endif

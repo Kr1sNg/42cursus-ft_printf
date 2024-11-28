@@ -118,12 +118,13 @@ int	ft_printd_zero(long n, int pre)
 	return (count);
 }
 
-int print_unsigned_dec(long number)
+int print_unsigned_dec(long u)
 {
     int count;
 	char	c;
-	unsigned int u = (unsigned int)number;
 
+	if (u < 0)
+		u += (long)INT_MAX * 2 + 2;
     count = 0;
     if (u < 10)
     {
