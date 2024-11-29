@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:15:16 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/29 17:04:28 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:26:47 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i);
 int		ft_hexlen(unsigned long long n);
 int		ft_declen(unsigned long long n);
 int		ft_abs(long n);
-int		print_unsigned_dec(unsigned int u);
 
 //	ft_printf_tools.c
 
@@ -103,5 +102,8 @@ int		ft_printd_width(int width, long n, char sign, char c);
 int		ft_printd_wplus(int width, long n, char sign, char c);
 int		ft_printd_wp(int width, int pre, long n, char sign);
 int		ft_printd_wpsign(int width, int pre, long n, char sign);
+
+
+int print_unsigned_dec(long u);
 
 #endif

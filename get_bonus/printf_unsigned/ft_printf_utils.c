@@ -45,21 +45,3 @@ int	ft_abs(long n)
 	else
 		return (-n);
 }
-
-int	print_unsigned_dec(unsigned int u)
-{
-	int		count;
-	char	c;
-
-	count = 0;
-	if (u < 10)
-	{
-		count++;
-		c = u + 48;
-		write(1, &c, 1);
-		return (count);
-	}
-	count += print_unsigned_dec(u / 10);
-	count += print_unsigned_dec(u % 10);
-	return (count);
-}

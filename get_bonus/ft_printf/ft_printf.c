@@ -6,7 +6,7 @@
 /*   By: tat-nguy <tat-nguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:33:47 by tat-nguy          #+#    #+#             */
-/*   Updated: 2024/11/28 19:25:46 by tat-nguy         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:06:02 by tat-nguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_print_format(t_flags *flags, const char *manda, int *i, va_list ap)
 	else if (manda[*i] == 'd' || manda[*i] == 'i')
 		count += ft_print_dec(flags, (long)va_arg(ap, int));
 	else if (manda[*i] == 'u')
-		count += ft_print_dec(flags, va_arg(ap, unsigned int));
+		count += ft_print_dec(flags, (unsigned int)va_arg(ap, unsigned int));
 	else if (manda[*i] == 'x' || manda[*i] == 'X')
 		count += ft_print_hex(flags,
 				(unsigned long long)va_arg(ap, unsigned int), manda[*i]);
@@ -71,10 +71,7 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	while (ft_memchr("-+ #", manda[*i], 4) != NULL)
 	{
 		if (manda[*i] == '-')
-		{
 			flags->minus = 1;
-			flags->zero = 0;
-		}
 		if (manda[*i] == '+')
 			flags->plus = 1;
 		if (manda[*i] == ' ')
@@ -84,10 +81,7 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 		(*i)++;
 	}
 	if (manda[*i] == '0')
-	{
 		flags->zero = 1;
-		flags->minus = 0;
-	}
 	if (ft_isdigit(manda[*i]) != 0 || manda[*i] == '.')
 	{
 		if (manda[*i] == '.')
@@ -99,12 +93,14 @@ void	ft_update_flags(t_flags *flags, const char *manda, int *i)
 	}
 }
 
+/*
 #include <stdio.h>
 
 int main (void)
 {
-	int a = ft_printf("ft_printf: %.8u %.9u %.10u %.11u %.12u %.13u %.14u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	int b = printf("   printf: %.8u %.9u %.10u %.11u %.12u %.13u %.14u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	int a = ft_printf("ft_printf: %.7s\n", NULL);
+	int b = printf("   printf: %.7s\n", NULL);
 	ft_printf("characters were written in total is %i\n", a);
 	printf("characters were written in total is %i\n", b);
 }
+*/

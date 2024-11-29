@@ -38,9 +38,10 @@ int	ft_prints_precision(int precision, char *str)
 	i = 0;
 	if (str == NULL)
 	{
+		str = "(null)";
 		if (precision < 6)
 			precision = 0;
-		ft_prints_precision(precision, "(null)");
+		return (ft_prints_precision(precision, "(null)"));
 	}
 	while (str[i] != '\0' && i < precision)
 		i += write (1, &str[i], 1);
@@ -56,18 +57,19 @@ int	ft_prints_width(int width, char *str, int minus)
 		str = "(null)";
 	strlen = ft_strlen(str);
 	i = 0;
-	if (strlen >= width)
-		return (ft_prints(str));
 	if (minus == 1)
 	{
 		i += ft_prints(str);
 		while (i < width)
 			i += write(1, " ", 1);
-		return (i);
 	}
-	while (i < width - strlen)
-		i += write(1, " ", 1);
-	return (i + ft_prints(str));
+	else
+	{
+		while (i < width - strlen)
+			i += write(1, " ", 1);
+		i += ft_prints(str);
+	}
+	return (i);
 }
 
 int	ft_prints_duo(int width, int precision, char *str, int minus)
@@ -82,14 +84,12 @@ int	ft_prints_duo(int width, int precision, char *str, int minus)
 			precision = 0;
 	}
 	strlen = ft_strlen(str);
-	if (precision < strlen)
+	if (precision >= 0 && precision < strlen)
 		strlen = precision;
-	if (strlen >= width)
-		return (ft_prints_precision(precision, str));
 	count = 0;
 	if (minus == 1)
 	{
-		count += ft_prints_precision(precision, str);
+		count += ft_prints_precision(strlen, str);
 		while (count < width)
 			count += write(1, " ", 1);
 		return (count);
