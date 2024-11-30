@@ -1,4 +1,4 @@
-# my journey with ft_printf()
+# [my journey with ft_printf()](https://medium.com/@Kr1sNg/my-journey-with-ft-printf-f2f5ca19b2cd)
 
 _as the second practical project in the Common Core (cursus) of School 42_
 
@@ -19,10 +19,13 @@ With the keyword _“_[**_variadic functions_**](https://www.geeksforgeeks.org/v
 **_Variadic functions_** are functions that can take a variable number of arguments. It takes one fixed argument (or mandatory argument) and then any number of arguments can be passed, by the “…” at the end of syntax.
 
 **Syntax**
+
 <code>#include <stdarg.h>  
   return_type 		function_name(data_type variable_name, ...);  
   </code>
+
 applying to ***ft_printf:***
+
 <code>(int)		ft_printf("mandatory argument", 'variable argument', ...);
 </code>
 
@@ -39,7 +42,7 @@ void		va_end(va_list ap);
 -   _last_arg_ : is the last fixed argument (the mandatory argument).
 -   _type_ : type of variable
 
-OK after refreshing my brain with one track-list of “[Anh trai say hi](https://youtu.be/TM9SGdrOMsk?si=enlNndTUk2I08kBj)” finally, I could focus one more time in **_ft_printf()_**.
+OK after refreshing my brain with one track-list of “[Anh trai say hi](https://youtu.be/TM9SGdrOMsk?si=enlNndTUk2I08kBj)” finally, I could focus one more time on **_ft_printf()_**.
 
 ----------
 
@@ -101,8 +104,9 @@ There are some probable problems I want to note:
 #### **Bonus part:**
 
 Format prototype:
-% [‘ + ’ ‘ — ’ ‘ ’ ‘ 0 ’ ‘ # ’] [ _( number )_ ] [ .number ]
-________________%_<_____flag_____><__width__><_.precision_>
+
+- % [+— ’ ‘0#] [ _( number )_ ] [ .number ]
+- %_<_____flag_____><__width__><.precision>
 
 **Flags:**
 
