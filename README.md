@@ -19,23 +19,24 @@ With the keyword _“_[**_variadic functions_**](https://www.geeksforgeeks.org/v
 **_Variadic functions_** are functions that can take a variable number of arguments. It takes one fixed argument (or mandatory argument) and then any number of arguments can be passed, by the “…” at the end of syntax.
 
 **Syntax**
-
-<code>#include <stdarg.h>  
+```
+#include <stdarg.h>  
   return_type 		function_name(data_type variable_name, ...);  
-  </code>
+```
 
 applying to ***ft_printf:***
-
-<code>(int)		ft_printf("mandatory argument", 'variable argument', ...);
-</code>
+```
+(int)		ft_printf("mandatory argument", 'variable argument', ...);
+```
 
 Allowed external functions:
-<code>#include <stdarg.h>  
+```
+#include <stdarg.h>  
 void		va_start(va_list ap, last_arg); 
 type 	va_arg(va_list ap, type);  
 void 	va_copy(va_list dest, va_list src);  
 void		va_end(va_list ap);  
-</code>
+```
 
 -   _va_list_ : is an object type suitable for holding the information needed by the macros _va_start_, _va_arg_, _va_copy_, and _va_end_.
 -   _ap :_ is a variable of type _va_list_.
@@ -65,7 +66,7 @@ OK after refreshing my brain with one track-list of “[Anh trai say hi](https:/
 **Prototype and return value**
 
 Following the guideline, the prototype of **_ft_printf_** is:
-<code>int  ft_printf(const char *, ...); </code>
+`int  ft_printf(const char *, ...);`
 
 It returns a value of type int to make sure that the operation of function was successful or not using the return value.
 
@@ -73,13 +74,14 @@ It returns a value of type int to make sure that the operation of function was s
 -   if a negative value is returned, there was some error.
 
 Example with the return of real **_printf()_**
-<code>#include <stdio.h>  
+```
+#include <stdio.h>  
 int main()  
 {  
     int result = printf("Sentence to know how many %s\n", "characters were written");
     printf("%d characters were written in total (both mandatory and variable arguments)\n", result);  
 }
-</code>
+```
 
 ----------
 
@@ -105,8 +107,9 @@ There are some probable problems I want to note:
 
 Format prototype:
 
-- % [+— ’ ‘0#] [ _( number )_ ] [ .number ]
-- %_<_____flag_____><__width__><.precision>
+<code> % [+— ’ ‘0#] [ _( number )_ ] [ .number ] </code>
+
+<code> %  <  flag  > <  width  > <  .precision  > </code>
 
 **Flags:**
 
