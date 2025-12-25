@@ -135,6 +135,25 @@ Shortly update, at the end of Milestone 1, after finishing Born2beroot and get_n
 
 ----------
 
+## How to test
+
+- 
+
+
+- Make ft_printf library
+
+```c
+cd ft_printf_bonus/ && make 
+```
+
+- Change the `test.c` and compiler
+
+```c
+cc -Wall -Wextra -Werror test.c -Lft_printf_bonus -lftprintf -o test
+
+./test
+```
+
 **References:**
 <br>[printf](https://cplusplus.com/reference/cstdio/printf/) <br>
 [Let's build a mini printf function](https://youtu.be/byRw36Y3Hjs?si=vALAB0UQ5mC5cB-P) <br>
